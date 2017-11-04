@@ -23,6 +23,9 @@ module password_cracker(clk, rst, password_to_crack, from, to);
   reg [5:0] temp_res [3:0];
   // output reg [39:0] hashedPermutation;
   wire [4*8:0] password_to_crack;
+  
+  reg [8:0] pwd_cmp [3:0];
+  
   reg [7:0] res;
   reg test;
 initial
@@ -32,6 +35,16 @@ begin
   temp_res[1] = 6'd0;
   temp_res[2] = 6'd0;
   temp_res[3] = 6'd0;
+
+//  pwd_cmp[0] = password_to_crack[7:0];
+//  pwd_cmp[1] = password_to_crack[15:8];
+//  pwd_cmp[2] = password_to_crack[23:16];
+//  pwd_cmp[3] = password_to_crack[31:24];
+
+  pwd_cmp[0] = password_to_crack[0];
+  pwd_cmp[1] = password_to_crack[8];
+  pwd_cmp[2] = password_to_crack[16];
+  pwd_cmp[3] = password_to_crack[24];
 end
 
 always @(*)
@@ -42,21 +55,21 @@ always @(*)
     arr[3] = 6'd0;
     // arr[0] <= from;
     // while (arr[0] <= to)
-    while (arr[0] <= to)
+    while (arr[3] <= to)
     begin
-      arr[3] = arr[3] + 1;
-      if (arr[3] > 35)
+      arr[0] = arr[0] + 1;
+      if (arr[0] > 35)
       begin
-        arr[3] = 0;
-        arr[2] = arr[2] + 1;
-        if (arr[2] > 35)
+        arr[0] = 0;
+        arr[1] = arr[1] + 1;
+        if (arr[1] > 35)
         begin
-          arr[2] = 0;
-          arr[1] = arr[1] + 1;
-          if (arr[1] > 35)
+          arr[1] = 0;
+          arr[2] = arr[2] + 1;
+          if (arr[2] > 35)
           begin
-            arr[1] = 0;
-            arr[0] = arr[0] + 1;
+            arr[2] = 0;
+            arr[3] = arr[3] + 1;
           end
         end
       end
@@ -64,10 +77,10 @@ always @(*)
       // Convert arr to char
       // Compare to input
       // Return true if found
-      if (arr[0] == password_to_crack[0]
-          && arr[1] == password_to_crack[8]
-          && arr[2] == password_to_crack[16]
-          && arr[3] == password_to_crack[24])
+      if (arr[0] == password_to_crack[0] - 48
+          && arr[1] == password_to_crack[8] - 48
+          && arr[2] == password_to_crack[16] - 48
+          && arr[3] == password_to_crack[24] - 48)
       begin
         test = 1'b1;
         // temp_res[0] = arr[0];
