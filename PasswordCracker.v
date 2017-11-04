@@ -81,13 +81,13 @@ always @(*)
   // Return false if not found
 // end
 
-  function [7:0] convertToChar;
-    input d1, d2, d3, d4;
-    reg [4*8:0] chars;
-    assign chars[7:0] = "a";
-    begin
-      convertToChar = chars[7:0];
-    end 
-  endfunction
+  // function [7:0] convertToChar;
+  //   input d1, d2, d3, d4;
+  //   reg [4*8:0] chars;
+  //   assign chars[7:0] = "a";
+  //   begin
+  //     convertToChar = chars[7:0];
+  //   end 
+  // endfunction
   // assign res = convertToChar(temp_res[0], temp_res[1], temp_res[2], temp_res[3]);
 endmodule
