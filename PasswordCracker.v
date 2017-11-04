@@ -22,9 +22,12 @@ module password_cracker(clk, rst, password_to_crack, from, to);
   //reg [5:0] to;
   reg [5:0] temp_res [3:0];
   // output reg [39:0] hashedPermutation;
+  wire [4*8:0] password_to_crack;
   reg [7:0] res;
+  reg test;
 initial
 begin
+  test = 1'b0;
   temp_res[0] = 6'd0;
   temp_res[1] = 6'd0;
   temp_res[2] = 6'd0;
@@ -61,10 +64,17 @@ always @(*)
       // Convert arr to char
       // Compare to input
       // Return true if found
-      temp_res[0] = arr[0];
-      temp_res[1] = arr[1];
-      temp_res[2] = arr[2];
-      temp_res[3] = arr[3];
+      if (arr[0] == password_to_crack[0]
+          && arr[1] == password_to_crack[8]
+          && arr[2] == password_to_crack[16]
+          && arr[3] == password_to_crack[24])
+      begin
+        test = 1'b1;
+        // temp_res[0] = arr[0];
+        // temp_res[1] = arr[1];
+        // temp_res[2] = arr[2];
+        // temp_res[3] = arr[3];
+      end
     end
 /*    else
     begin
