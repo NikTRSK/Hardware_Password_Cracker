@@ -30,9 +30,12 @@ module password_cracker(clk, rst, password_to_crack, from, to, found, done);
   reg found;
   reg done;
 
+// integer f;
+
 always @(*)
   begin
-    found = 1'b0;
+// f = $fopen("output2.txt", "w");
+    // found = 1'b0;
     done = 1'b0;
     pwd_cmp[0] = password_to_crack[7:0] - 48;
     pwd_cmp[1] = password_to_crack[15:8] - 48;
@@ -65,12 +68,15 @@ always @(*)
       // Convert arr to char
       // Compare to input
       // Return true if found
+//$display("%d, %d, %d, %d", arr[0], arr[1], arr[2], arr[3]);
+// $fwrite(f, "f: %d t: %d | %d, %d, %d, %d | pwd: %d, %d, %d, %d\n", from, to, arr[0], arr[1], arr[2], arr[3], pwd_cmp[0], pwd_cmp[1], pwd_cmp[2], pwd_cmp[3]);
       if (arr[0] == pwd_cmp[0]
        && arr[1] == pwd_cmp[1]
        && arr[2] == pwd_cmp[2]
        && arr[3] == pwd_cmp[3])
       begin
         found = 1'b1;
+	// $display("Found");
       end
     end
     done = 1'b1;

@@ -17,15 +17,24 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
   // reg [5:0] arr [3:0];
   wire [4*8:0] password_to_crack;
   wire found;
-  wire done;
+  reg done;
 
-  // wire done1;
-  // wire done2;
-  // wire done3;
-  // wire done4;
-  // wire done5;
-  // wire done6;
-  // wire done7;
+  wire done1;
+  wire done2;
+  wire done3;
+  wire done4;
+  wire done5;
+  wire done6;
+  wire done7;
+  wire done8;
+  wire done9;
+
+  reg temp_found;
+  // assign found = 1'b0;
+  // initial
+  // begin
+  //   assign found = 1'b0;
+  // end
 
   password_cracker pc_execute1 (
     .clk(clk),
@@ -34,7 +43,7 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     .from(6'd0),
     .to(6'd3),
     .found(found),
-    .done(done)	
+    .done(done1)	
   );
 
   password_cracker pc_execute2 (
@@ -44,7 +53,7 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     .from(6'd4),
     .to(6'd7),
     .found(found),
-    .done(done)	
+    .done(done2)	
   );
 
   password_cracker pc_execute3 (
@@ -54,7 +63,7 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     .from(6'd8),
     .to(6'd11),
     .found(found),
-    .done(done)	
+    .done(done3)	
   );
 
   password_cracker pc_execute4 (
@@ -64,7 +73,7 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     .from(6'd12),
     .to(6'd15),
     .found(found),
-    .done(done)	
+    .done(done4)	
   );
 
   password_cracker pc_execute5 (
@@ -74,7 +83,7 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     .from(6'd16),
     .to(6'd19),
     .found(found),
-    .done(done)	
+    .done(done5)	
   );
 
   password_cracker pc_execute6 (
@@ -84,7 +93,7 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     .from(6'd20),
     .to(6'd23),
     .found(found),
-    .done(done)	
+    .done(done6)	
   );
 
   password_cracker pc_execute7 (
@@ -94,7 +103,7 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     .from(6'd24),
     .to(6'd27),
     .found(found),
-    .done(done)	
+    .done(done7)	
   );
 
   password_cracker pc_execute8 (
@@ -104,7 +113,7 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     .from(6'd28),
     .to(6'd31),
     .found(found),
-    .done(done)	
+    .done(done8)	
   );
 
   password_cracker pc_execute9 (
@@ -114,12 +123,20 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     .from(6'd32),
     .to(6'd35),
     .found(found),
-    .done(done)	
+    .done(done9)	
   );
+
+  // initial
+  // begin
+  //   found = 1'b0;
+  // end
 
   always@(*)
   begin
-    
+
+$display("%s\n", password_to_crack);
+$display("F: %d", found);
+    done = done1 && done2 && done3 && done4 && done5 && done6 && done7 && done8 && done9;
   end
 
 endmodule

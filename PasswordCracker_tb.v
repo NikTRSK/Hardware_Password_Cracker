@@ -69,7 +69,7 @@ module pc_tb;
     begin
      if (found)
 	$display("We found: %s", password_to_crack);
-     else if(done)
+     else if(done && !found)
         $display("Password couldn't be cracked!");
     end
 
