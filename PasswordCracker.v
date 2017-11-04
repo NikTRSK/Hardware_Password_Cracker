@@ -14,7 +14,7 @@ module password_cracker(clk, rst, password_to_crack, from, to, found, done);
   input clk;
   input rst;
 
-  input password_to_crack;//[4*8:0];
+  input password_to_crack;
   input [5:0] from;
   input [5:0] to;
 
@@ -42,7 +42,7 @@ always @(*)
     arr[0] = 6'd0;
     arr[1] = 6'd0;
     arr[2] = 6'd0;
-    arr[3] = 6'd0;
+    arr[3] = from;
     while (arr[3] <= to && !found)
     begin
       arr[0] = arr[0] + 1;
