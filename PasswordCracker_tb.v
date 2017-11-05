@@ -52,14 +52,19 @@ module pc_tb;
     // Generate the clock signal
     initial
     begin
+	password_to_crack = "0001";
         clk = 0;
 	rst = 1'b0;
-	password_to_crack = "0001";
+	#100
+	rst = 1'b1;
+	#100
+	rst = 1'b0;
 	// from = 6'd0;
 	// to = 6'd35;
 	//found = 0;
 	//$display("%d, %d, $s", from, to, password_to_crack);
-        forever begin
+        $display("PWD in TB: %s", password_to_crack);
+	forever begin
             #100;
             clk = ~clk;
         end
