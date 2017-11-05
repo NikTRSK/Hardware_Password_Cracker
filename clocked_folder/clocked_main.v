@@ -148,6 +148,7 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     end
     $display("%s\n", password_to_crack);
     $display("F: %d", found);
+    $display("%d, %d, %d, %d, %d, %d, %d, %d, %d", done1, done2, done3, done4, done5, done6, done7, done8, done9);
     done <= done1 && done2 && done3 && done4 && done5 && done6 && done7 && done8 && done9;
   end
 
