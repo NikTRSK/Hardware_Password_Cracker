@@ -135,8 +135,8 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
   begin
     if(rst)
     begin
-       /* //done <= 1'b0;
-        done1 <= 1'b0;
+       done <= 1'b0;
+       /* done1 <= 1'b0;
         done2 <= 1'b0;
         done3 <= 1'b0;
         done4 <= 1'b0;

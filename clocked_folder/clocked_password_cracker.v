@@ -39,6 +39,7 @@ always @(posedge clk, posedge rst)
     if(rst)
     begin
         done <= 1'b0;
+	found <= 1'b0;
         pwd_cmp[0] <= password_to_crack[7:0] - 48;
         pwd_cmp[1] <= password_to_crack[15:8] - 48;
         pwd_cmp[2] <= password_to_crack[23:16] - 48;
@@ -80,12 +81,16 @@ always @(posedge clk, posedge rst)
             && arr[2] == pwd_cmp[2]
             && arr[3] == pwd_cmp[3])
             begin
-                    found = 1'b1;
+                    found <= 1'b1;
                     //$display("Found");
             end
         end
+	else
+	begin
+		    done <= 1'b1;
+	end
     end
-    done = 1'b1;
+//    done = 1'b1;
   end
   // brute_force_in_range = 0;
   // endfunction
