@@ -135,16 +135,16 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
   begin
     if(rst)
     begin
-        done <= 1b'0;
-        done1 <= 1b'0;
-        done2 <= 1b'0;
-        done3 <= 1b'0;
-        done4 <= 1b'0;
-        done5 <= 1b'0;
-        done6 <= 1b'0;
-        done7 <= 1b'0;
-        done8 <= 1b'0;
-        done9 <= 1b'0;
+       /* //done <= 1'b0;
+        done1 <= 1'b0;
+        done2 <= 1'b0;
+        done3 <= 1'b0;
+        done4 <= 1'b0;
+        done5 <= 1'b0;
+        done6 <= 1'b0;
+        done7 <= 1'b0;
+        done8 <= 1'b0;
+        done9 <= 1'b0;*/
     end
     $display("%s\n", password_to_crack);
     $display("F: %d", found);
