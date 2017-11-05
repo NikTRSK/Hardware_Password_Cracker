@@ -1,0 +1,87 @@
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      6 Bit       Adders := 72    
++---Registers : 
+	                6 Bit    Registers := 72    
+	                1 Bit    Registers := 20    
++---Muxes : 
+	   2 Input      6 Bit        Muxes := 117   
+	   2 Input      1 Bit        Muxes := 45    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module password_cracker_main 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 2     
+Module password_cracker 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      6 Bit       Adders := 8     
++---Registers : 
+	                6 Bit    Registers := 8     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      6 Bit        Muxes := 13    
+	   2 Input      1 Bit        Muxes := 5     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |BUFG |     1|
+|2     |LUT1 |    60|
+|3     |LUT2 |    84|
+|4     |LUT3 |    28|
+|5     |LUT4 |   260|
+|6     |LUT5 |    54|
+|7     |LUT6 |   147|
+|8     |FDCE |   437|
+|9     |FDPE |   229|
+|10    |FDRE |     2|
+|11    |LDC  |    24|
+|12    |IBUF |    26|
+|13    |OBUF |     2|
++------+-----+------+
+
+Report Instance Areas: 
++------+--------------+-------------------+------+
+|      |Instance      |Module             |Cells |
++------+--------------+-------------------+------+
+|1     |top           |                   |  1354|
+|2     |  pc_execute1 |password_cracker   |   136|
+|3     |  pc_execute2 |password_cracker_0 |   233|
+|4     |  pc_execute3 |password_cracker_1 |   136|
+|5     |  pc_execute4 |password_cracker_2 |   136|
+|6     |  pc_execute5 |password_cracker_3 |   137|
+|7     |  pc_execute6 |password_cracker_4 |   137|
+|8     |  pc_execute7 |password_cracker_5 |   137|
+|9     |  pc_execute8 |password_cracker_6 |   135|
+|10    |  pc_execute9 |password_cracker_7 |   136|
++------+--------------+-------------------+------+
