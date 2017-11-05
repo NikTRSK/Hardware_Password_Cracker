@@ -135,6 +135,7 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
   begin
     if(rst)
     begin
+	//found = 1'b0;
        done <= 1'b0;
        /* done1 <= 1'b0;
         done2 <= 1'b0;
@@ -146,9 +147,9 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
         done8 <= 1'b0;
         done9 <= 1'b0;*/
     end
-    $display("%s\n", password_to_crack);
+    $display("PWD in main: %s\n", password_to_crack);
     $display("F: %d", found);
-    $display("%d, %d, %d, %d, %d, %d, %d, %d, %d", done1, done2, done3, done4, done5, done6, done7, done8, done9);
+    $display("D: %d | %d, %d, %d, %d, %d, %d, %d, %d, %d", done, done1, done2, done3, done4, done5, done6, done7, done8, done9);
     done <= done1 && done2 && done3 && done4 && done5 && done6 && done7 && done8 && done9;
   end
 

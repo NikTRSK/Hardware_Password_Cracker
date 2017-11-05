@@ -14,7 +14,7 @@ module password_cracker(clk, rst, password_to_crack, from, to, found, done);
   input clk;
   input rst;
 
-  input password_to_crack;
+  input [4*8:0] password_to_crack;
   input [5:0] from;
   input [5:0] to;
 
@@ -24,7 +24,7 @@ module password_cracker(clk, rst, password_to_crack, from, to, found, done);
   reg [5:0] arr [3:0];
   reg [5:0] temp_res [3:0];
   // output reg [39:0] hashedPermutation;
-  wire [4*8:0] password_to_crack;
+  //reg [4*8:0] password_to_crack;
   reg [5:0] pwd_cmp [3:0];
   reg [7:0] res;
   reg found;
@@ -40,33 +40,33 @@ always @(posedge clk, posedge rst)
     begin
         done <= 1'b0;
 	found <= 1'b0;
-        pwd_cmp[0] <= password_to_crack[7:0] - 48;
-        pwd_cmp[1] <= password_to_crack[15:8] - 48;
-        pwd_cmp[2] <= password_to_crack[23:16] - 48;
-        pwd_cmp[3] <= password_to_crack[31:24] - 48;
+        pwd_cmp[3] <= password_to_crack[7:0] - 48;
+        pwd_cmp[2] <= password_to_crack[15:8] - 48;
+        pwd_cmp[1] <= password_to_crack[23:16] - 48;
+        pwd_cmp[0] <= password_to_crack[31:24] - 48;
 
-        arr[0] <= 6'd0;
+        arr[3] <= 6'd0;
         arr[1] <= 6'd0;
         arr[2] <= 6'd0;
-        arr[3] <= from;
+        arr[0] <= from;
     end
     else
     begin
-        if (arr[3] <= to && !found)
+        if (arr[0] <= to && !found)
         begin
-            arr[0] <= arr[0] + 1;
-            if (arr[0] == 35)
+            arr[3] <= arr[3] + 1;
+            if (arr[3] == 35)
             begin
-                arr[0] <= 0;
-                arr[1] <= arr[1] + 1;
-                if (arr[1] == 35)
+                arr[3] <= 0;
+                arr[2] <= arr[2] + 1;
+                if (arr[2] == 35)
                 begin
-                    arr[1] <= 0;
-                    arr[2] <= arr[2] + 1;
-                    if (arr[2] == 35)
+                    arr[2] <= 0;
+                    arr[1] <= arr[1] + 1;
+                    if (arr[1] == 35)
                     begin
-                        arr[2] <= 0;
-                        arr[3] <= arr[3] + 1;
+                        arr[1] <= 0;
+                        arr[0] <= arr[0] + 1;
                     end
                 end
              end
@@ -74,7 +74,9 @@ always @(posedge clk, posedge rst)
             // Convert arr to char
             // Compare to input
             // Return true if found
-            //$display("%d, %d, %d, %d", arr[0], arr[1], arr[2], arr[3]);
+            //$display("Arr: %d, %d, %d, %d", arr[0], arr[1], arr[2], arr[3]);
+	    //$display("pw: %d, %d, %d, %d", pwd_cmp[0], pwd_cmp[1], pwd_cmp[2], pwd_cmp[3]);
+    //$display("PWD in block: %s\n", password_to_crack);
             // $fwrite(f, "f: %d t: %d | %d, %d, %d, %d | pwd: %d, %d, %d, %d\n", from, to, arr[0], arr[1], arr[2], arr[3], pwd_cmp[0], pwd_cmp[1], pwd_cmp[2], pwd_cmp[3]);
             if (arr[0] == pwd_cmp[0]
             && arr[1] == pwd_cmp[1]
@@ -82,7 +84,7 @@ always @(posedge clk, posedge rst)
             && arr[3] == pwd_cmp[3])
             begin
                     found <= 1'b1;
-                    //$display("Found");
+                    $display("Found");
             end
         end
 	else
