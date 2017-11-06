@@ -16,4 +16,7 @@ Make sure all group members know wtf is going on
 > Define PE inputs and outputs  
 
 Talk about NOC Design  
-> Placement for PEs
+> Placement for PEs  
+
+Compare to Intel Library  
+> Talk about optimizations
