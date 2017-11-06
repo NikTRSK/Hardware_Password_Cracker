@@ -48,34 +48,40 @@ module pc_tb;
   // reg [5:0] to;
   wire found;
   wire done;
-
+  reg [20:0] overall_clocks;
     // Generate the clock signal
-    initial
-    begin
-	password_to_crack = "0001";
-        clk = 0;
-	rst = 1'b0;
-	#100
-	rst = 1'b1;
-	#100
-	rst = 1'b0;
-	// from = 6'd0;
-	// to = 6'd35;
-	//found = 0;
-	//$display("%d, %d, $s", from, to, password_to_crack);
-        $display("PWD in TB: %s", password_to_crack);
-	forever begin
-            #100;
-            clk = ~clk;
-        end
+  initial
+  begin
+    overall_clocks <= 0;
+	  password_to_crack = "0001";
+    clk = 0;
+	  rst = 1'b0;
+	  #100
+	  rst = 1'b1;
+	  #100
+	  rst = 1'b0;
+	  // from = 6'd0;
+	  // to = 6'd35;
+	  //found = 0;
+	  //$display("%d, %d, $s", from, to, password_to_crack);
+    $display("PWD in TB: %s", password_to_crack);
+	  forever begin
+      #100;
+      clk = ~clk;
     end
+  end
 
-    always@(posedge clk)
+  always@(posedge clk)
     begin
-     if (found)
-	$display("We found: %s", password_to_crack);
-     else if(done && !found)
-        $display("Password couldn't be cracked!");
+      overall_clocks <= overall_clocks + 1;
+      if (found)
+      begin
+      $display("The cracker has found it's result: %d\nStatistics:\nNumber of processing elements: 9\nClocks to generate result:%d", password_to_crack, overall_clocks);
+      $stop;
+    end
+    else if(done && !found)
+      $display("Password couldn't be cracked!");
+      $stop;
     end
 
   password_cracker_main pc (
