@@ -13,4 +13,7 @@ Explain why we didn't include the waveform
 > Do some excessive handwaving  
 
 Make sure all group members know wtf is going on  
-> Define PE inputs and outputs
+> Define PE inputs and outputs  
+
+Talk about NOC Design  
+> Placement for PEs
