@@ -10,4 +10,7 @@ Make sure we have a clear definitino of a processing element
 > Talk about resources for the processing elements  
 
 Explain why we didn't include the waveform  
-> Do some excessive handwaving
+> Do some excessive handwaving  
+
+Make sure all group members know wtf is going on  
+> Define PE inputs and outputs
