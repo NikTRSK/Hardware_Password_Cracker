@@ -1,4 +1,4 @@
-# Notes for our presentation
+# Notes for our Milestone 3 Presentation
 
 Because we simulated in modelsim, our clock could be very tiny. We tried to optimize around this and made sure we used a realistic clock for the FPGA
 
