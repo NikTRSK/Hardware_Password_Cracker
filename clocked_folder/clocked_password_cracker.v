@@ -8,6 +8,8 @@
   Arrays:				http://www.verilogpro.com/verilog-arrays-plain-simple/
  */
 
+// `timescale 1ns/10ps
+
 module password_cracker(clk, rst, password_to_crack, from, to, found, done);
 
   /* Brute force function */
@@ -31,6 +33,10 @@ module password_cracker(clk, rst, password_to_crack, from, to, found, done);
   reg done;
 
   reg [511 : 0] converted_try;
+
+  sha1_main sha1(
+      .input_pwd(converted_try)
+  );
 
 always @(posedge clk, posedge rst)
   begin
@@ -56,10 +62,10 @@ always @(posedge clk, posedge rst)
     begin
         if (arr[0] <= to && !found)
         begin
-            arr[3] <= arr[3] + 1;
-            if (arr[3] == 35)
-            begin
-                arr[3] <= 0;
+            // arr[3] <= arr[3] + 1;
+            // if (arr[3] == 35)
+            // begin
+                // arr[3] <= 0;
                 arr[2] <= arr[2] + 1;
                 if (arr[2] == 35)
                 begin
@@ -70,7 +76,7 @@ always @(posedge clk, posedge rst)
                         arr[1] <= 0;
                         arr[0] <= arr[0] + 1;
                     end
-                end
+                // end
              end
             // $display("%d, %d, %,d, %d", arr[0], arr[1], arr[2], arr[3]);
             // Convert arr to char
@@ -84,20 +90,20 @@ always @(posedge clk, posedge rst)
             converted_try[511 : 504] = arr[0];
             converted_try[503 : 496] = arr[1];
             converted_try[495 : 488] = arr[2];
-            converted_try[487 : 480] = arr[3];
+            // converted_try[487 : 480] = arr[3];
 
             $display("array: 0: %d, 1: %d, 2: %d, 3: %d", arr[0], arr[1], arr[2], arr[3]);
             $display("CONVERTED: %h", converted_try);
 
             // Change this function to check agains hashed password
-            if (arr[0] == pwd_cmp[0]
-            && arr[1] == pwd_cmp[1]
-            && arr[2] == pwd_cmp[2]
-            && arr[3] == pwd_cmp[3])
-            begin
-                    found <= 1'b1;
-                    $display("Found");
-            end
+            // if (arr[0] == pwd_cmp[0]
+            // && arr[1] == pwd_cmp[1]
+            // && arr[2] == pwd_cmp[2]
+            // && arr[3] == pwd_cmp[3])
+            // begin
+            //         found <= 1'b1;
+            //         $display("Found");
+            // end
         end
 	else
 	begin
