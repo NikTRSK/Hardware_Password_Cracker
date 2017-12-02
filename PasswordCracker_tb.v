@@ -53,7 +53,7 @@ module pc_tb;
   initial
   begin
     overall_clocks <= 0;
-	  password_to_crack = "0001";
+	  password_to_crack = "gggg";
     clk = 0;
 	  rst = 1'b0;
 	  #100

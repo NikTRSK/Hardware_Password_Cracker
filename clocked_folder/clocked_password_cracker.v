@@ -30,7 +30,7 @@ module password_cracker(clk, rst, password_to_crack, from, to, found, done);
   reg found;
   reg done;
 
-// integer f;
+  reg [511 : 0] converted_try;
 
 always @(posedge clk, posedge rst)
   begin
@@ -39,7 +39,7 @@ always @(posedge clk, posedge rst)
     if(rst)
     begin
         done <= 1'b0;
-	found <= 1'b0;
+	    found <= 1'b0;
         pwd_cmp[3] <= password_to_crack[7:0] - 48;
         pwd_cmp[2] <= password_to_crack[15:8] - 48;
         pwd_cmp[1] <= password_to_crack[23:16] - 48;
@@ -49,6 +49,8 @@ always @(posedge clk, posedge rst)
         arr[1] <= 6'd0;
         arr[2] <= 6'd0;
         arr[0] <= from;
+
+        converted_try = 512'h00000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000018;
     end
     else
     begin
@@ -78,6 +80,16 @@ always @(posedge clk, posedge rst)
 	    //$display("pw: %d, %d, %d, %d", pwd_cmp[0], pwd_cmp[1], pwd_cmp[2], pwd_cmp[3]);
     //$display("PWD in block: %s\n", password_to_crack);
             // $fwrite(f, "f: %d t: %d | %d, %d, %d, %d | pwd: %d, %d, %d, %d\n", from, to, arr[0], arr[1], arr[2], arr[3], pwd_cmp[0], pwd_cmp[1], pwd_cmp[2], pwd_cmp[3]);
+            
+            converted_try[511 : 504] = arr[0];
+            converted_try[503 : 496] = arr[1];
+            converted_try[495 : 488] = arr[2];
+            converted_try[487 : 480] = arr[3];
+
+            $display("array: 0: %d, 1: %d, 2: %d, 3: %d", arr[0], arr[1], arr[2], arr[3]);
+            $display("CONVERTED: %h", converted_try);
+
+            // Change this function to check agains hashed password
             if (arr[0] == pwd_cmp[0]
             && arr[1] == pwd_cmp[1]
             && arr[2] == pwd_cmp[2]
