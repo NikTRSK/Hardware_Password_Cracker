@@ -34,9 +34,9 @@ module password_cracker(clk, rst, password_to_crack, from, to, found, done);
 
   reg [511 : 0] converted_try;
 
-  sha1_main sha1(
-      .input_pwd(converted_try)
-  );
+//   sha1_main sha1(
+//       .input_pwd(converted_try)
+//   );
 
 always @(posedge clk, posedge rst)
   begin
@@ -56,7 +56,7 @@ always @(posedge clk, posedge rst)
         arr[2] <= 6'd0;
         arr[0] <= from;
 
-        converted_try = 512'h00000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000018;
+        converted_try <= 512'h00000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000018;
     end
     else
     begin
@@ -96,14 +96,14 @@ always @(posedge clk, posedge rst)
             $display("CONVERTED: %h", converted_try);
 
             // Change this function to check agains hashed password
-            // if (arr[0] == pwd_cmp[0]
-            // && arr[1] == pwd_cmp[1]
-            // && arr[2] == pwd_cmp[2]
-            // && arr[3] == pwd_cmp[3])
-            // begin
-            //         found <= 1'b1;
-            //         $display("Found");
-            // end
+            if (arr[0] == pwd_cmp[0]
+            && arr[1] == pwd_cmp[1]
+            && arr[2] == pwd_cmp[2]
+            && arr[3] == pwd_cmp[3])
+            begin
+                    found <= 1'b1;
+                    $display("Found");
+            end
         end
 	else
 	begin
@@ -128,4 +128,7 @@ always @(posedge clk, posedge rst)
   //   end 
   // endfunction
   // assign res = convertToChar(temp_res[0], temp_res[1], temp_res[2], temp_res[3]);
+    sha1_main sha1(
+      .input_pwd(converted_try)
+  );
 endmodule
