@@ -51,7 +51,7 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     .rst(rst),
     .password_to_crack(password_to_crack),
     .from(6'd0),
-    .to(6'd3),
+    .to(6'd2),
     .found(found1),
     .done(done1)	
   );
@@ -60,8 +60,8 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     .clk(clk),
     .rst(rst),
     .password_to_crack(password_to_crack),
-    .from(6'd4),
-    .to(6'd7),
+    .from(6'd3),
+    .to(6'd5),
     .found(found2),
     .done(done2)	
   );
@@ -70,8 +70,8 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     .clk(clk),
     .rst(rst),
     .password_to_crack(password_to_crack),
-    .from(6'd8),
-    .to(6'd11),
+    .from(6'd6),
+    .to(6'd8),
     .found(found3),
     .done(done3)	
   );
@@ -80,8 +80,8 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     .clk(clk),
     .rst(rst),
     .password_to_crack(password_to_crack),
-    .from(6'd12),
-    .to(6'd15),
+    .from(6'd9),
+    .to(6'd11),
     .found(found4),
     .done(done4)	
   );
@@ -90,8 +90,8 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     .clk(clk),
     .rst(rst),
     .password_to_crack(password_to_crack),
-    .from(6'd16),
-    .to(6'd19),
+    .from(6'd12),
+    .to(6'd14),
     .found(found5),
     .done(done5)	
   );
@@ -100,8 +100,8 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     .clk(clk),
     .rst(rst),
     .password_to_crack(password_to_crack),
-    .from(6'd20),
-    .to(6'd23),
+    .from(6'd15),
+    .to(6'd17),
     .found(found6),
     .done(done6)	
   );
@@ -110,8 +110,8 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     .clk(clk),
     .rst(rst),
     .password_to_crack(password_to_crack),
-    .from(6'd24),
-    .to(6'd27),
+    .from(6'd18),
+    .to(6'd20),
     .found(found7),
     .done(done7)	
   );
@@ -120,8 +120,8 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     .clk(clk),
     .rst(rst),
     .password_to_crack(password_to_crack),
-    .from(6'd28),
-    .to(6'd31),
+    .from(6'd21),
+    .to(6'd23),
     .found(found8),
     .done(done8)	
   );
@@ -130,7 +130,37 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     .clk(clk),
     .rst(rst),
     .password_to_crack(password_to_crack),
-    .from(6'd32),
+    .from(6'd24),
+    .to(6'd26),
+    .found(found9),
+    .done(done9)	
+  );
+
+  password_cracker pc_execute10 (
+    .clk(clk),
+    .rst(rst),
+    .password_to_crack(password_to_crack),
+    .from(6'd27),
+    .to(6'd29),
+    .found(found9),
+    .done(done9)	
+  );
+
+  password_cracker pc_execute11 (
+    .clk(clk),
+    .rst(rst),
+    .password_to_crack(password_to_crack),
+    .from(6'd30),
+    .to(6'd32),
+    .found(found9),
+    .done(done9)	
+  );
+
+  password_cracker pc_execute12 (
+    .clk(clk),
+    .rst(rst),
+    .password_to_crack(password_to_crack),
+    .from(6'd33),
     .to(6'd35),
     .found(found9),
     .done(done9)	
@@ -159,8 +189,8 @@ module password_cracker_main(clk, rst, password_to_crack, found, done);
     end
     //$display("PWD in main: %s\n", password_to_crack);
     // $display("F: %d", found);
-    done <= done1 && done2 && done3 && done4 && done5 && done6 && done7 && done8 && done9;
-    found <= found1 || found2 || found3 || found4 || found5 || found6 || found7 || found8 || found9;
+    // done <= done1 && done2 && done3 && done4 && done5 && done6 && done7 && done8 && done9;
+    // found <= found1 || found2 || found3 || found4 || found5 || found6 || found7 || found8 || found9;
     $display("D: %d | %d, %d, %d, %d, %d, %d, %d, %d, %d", done, done1, done2, done3, done4, done5, done6, done7, done8, done9);
     $display("F: %d | %d, %d, %d, %d, %d, %d, %d, %d, %d", found, found1, found2, found3, found4, found5, found6, found7, found8, found9);
   end
